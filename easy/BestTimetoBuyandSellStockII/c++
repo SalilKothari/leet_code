@@ -1,0 +1,59 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+        int now = 0;
+        int tomorrow = 0;
+        int potential = 0;
+        
+        int running = 0;
+        
+        int n = prices.size();
+        
+        while(potential!=(n-1)){
+            //push tomorrow and potential
+            tomorrow++;
+            potential++;
+            
+            if(prices[tomorrow]<=prices[now]){
+                now++;
+            }
+            else{
+                if(potential == n-1){//we're at the end:
+                    break;
+                }
+                potential = tomorrow +1;
+                if(prices[potential]<=prices[tomorrow]){//make trade
+                    running += (prices[tomorrow] - prices[now]);
+                    now = potential;
+                    tomorrow = potential;
+                    
+                }
+            }
+        }
+            
+            
+            //need case for end of vector
+            
+        if(potential == n-1){
+            if(potential == tomorrow){
+                if(prices[potential]>prices[now]){
+                    running +=(prices[potential] - prices[now]);
+                }
+            }
+            else if((prices[potential]>prices[tomorrow]) && prices[potential]>prices[now]){
+                running +=(prices[potential] - prices[now]);
+            }
+            else if((prices[potential]<prices[tomorrow]) && prices[tomorrow]>prices[now]){
+                running +=(prices[tomorrow] - prices[now]);
+            }
+
+        }
+            
+            
+            
+        
+        return running;
+        
+    }
+};
