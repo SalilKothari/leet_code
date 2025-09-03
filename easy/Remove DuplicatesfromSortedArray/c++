@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        int curr = 0;
+        int dupe = 0;
+        
+        while(dupe!=n-1){
+            //progress dupe
+            dupe++;
+            if(nums[dupe]!=nums[curr]){//if not equal
+                //progress curr and change value
+                curr++;
+                nums[curr] = nums[dupe];
+                
+            }
+        }
+        return curr+1;
+        
+    }
+};
