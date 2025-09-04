@@ -1,0 +1,76 @@
+//Great memmory usage - bad speed:
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        
+        
+        //sort each:
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        
+        
+        auto a = nums1.cbegin();
+        auto b = nums2.cbegin();
+        
+        vector<int> common;
+        
+        while(a!= nums1.cend() && b!=nums2.cend()){
+            
+            if(*a == *b){
+                common.push_back(*a);
+                a++;
+                b++;
+            }
+            else if(*a>*b){
+                b++;
+            }
+            else{
+                a++;
+            }
+            
+            if(a == nums1.cend() || b == nums2.cend()){
+                break;
+            }
+            
+        }
+        
+        return common;
+        
+    }
+};
+
+
+
+
+
+
+//Fastest, but lots of memory:
+
+
+
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        
+        
+        std::unordered_map<int,int> hash;
+        
+        
+        vector<int> common;
+        
+        for(const int& num1: nums1){
+            ++hash[num1];
+        }
+        
+        
+        for(const int& num2: nums2){
+            if(hash[num2]>0){
+                common.push_back(num2);
+                --hash[num2];
+            }
+        }
+        
+        return common;
+        
+    }
+};
