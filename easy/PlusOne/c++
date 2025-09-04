@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        
+        
+        
+        for(auto it = digits.rbegin(); it!=digits.rend(); ++it){//right to left
+                        
+            (*it)++;
+            if(*it != 10){
+                return digits;
+            }
+            
+            else{
+                *it = 0;
+            }
+            
+            
+        }
+        
+        digits.insert(digits.begin(),1);
+        
+        return digits;
+        
+    }
+};
