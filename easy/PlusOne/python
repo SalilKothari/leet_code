@@ -1,0 +1,15 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        
+        separator = ""
+        digits = [str(d) for d in digits]
+        
+        string = separator.join(digits)
+        
+
+        
+        finalInt = str(int(string) + 1)
+        
+        return [int(f) for f in finalInt]
+        
+        
