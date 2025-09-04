@@ -1,0 +1,16 @@
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        
+        
+        hash = Counter(nums1)
+        
+        
+        common = []
+        
+        for num2 in nums2 :
+            if hash[num2]>0:
+                common.append(num2)
+                hash[num2] -=1
+
+        
+        return common
