@@ -1,22 +1,20 @@
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> valIndex;
         
-        sums = {}
-        for i in range(len(nums)): #place all values in here
-            if nums[i] in sums:
-                sums[nums[i]].append(i)
-            else:
-                sums[nums[i]] = [i]
-        
-        # sums = enumerate(nums)
-        
-        
-        for key in sums:
-            seek = target - key
-            if seek in sums:
-                if seek == key:
-                    if len(sums[key])>1:
-                        return [sums[key][0], sums[key][1]]
-                else:
-                    return [sums[key][0], sums[seek][0]]
-        
+        for(int i =0; i<nums.size(); ++i){
+            
+            int current = nums[i];
+            int seek = target - current;
+            
+            if(valIndex.find(seek)!=valIndex.end()){
+                //it exists:
+                return {i, valIndex[seek]};
+            }
+            
+            valIndex[current] = i;
+        }
+        return {0,0};
+    }
+};
