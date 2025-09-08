@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        
+        int j =0;
+        
+        while(j<s.size() && isspace(s[j])){
+            ++j;
+        }
+        
+        int sign = 1;
+        long long running = 0;
+        if(s[j] == '-' || s[j] == '+'){
+            sign = (s[j] == '-')? -1:1;
+            ++j;
+        }
+        
+        
+        for(;j<s.size(); ++j){
+            if(s[j]>='0' && s[j]<='9'){
+                running = 10*running + s[j]-'0';
+            }
+            else{
+                break;
+            }
+            
+            
+            if (sign == 1 && running > INT_MAX) return INT_MAX;
+            if (sign == -1 && -running < INT_MIN) return INT_MIN;
+            
+        }
+        
+        
+        
+        //Rounding: If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then round the integer to remain in the range. Specifically, integers less than -231 should be rounded to -231, and integers greater than 231 - 1 should be rounded to 231 - 1.
+        
+        
+        
+        return (int)(sign*running);
+    }
+};
