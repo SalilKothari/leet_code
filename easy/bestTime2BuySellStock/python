@@ -1,0 +1,16 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        
+        minVal = prices[0]
+        best = 0
+        
+        for p in prices:
+            if(p < minVal):
+                minVal = p
+            
+            if p - minVal > best:
+                best = p - minVal
+            
+            
+        return best
