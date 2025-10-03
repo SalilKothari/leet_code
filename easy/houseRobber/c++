@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        vector<int> memo(nums.size(), -1);
+        return dfs(0, nums, memo);  // start at house 0
+    }
+
+    int dfs(int i, vector<int>& nums, vector<int>& memo) {
+        if (i >= nums.size()) return 0;           
+        if (memo[i] != -1) return memo[i];        
+
+        int rob_curr = nums[i] + dfs(i+2, nums, memo);
+        int skip_curr = dfs(i+1, nums, memo);
+
+        return memo[i] = max(rob_curr, skip_curr);
+    }
+};
