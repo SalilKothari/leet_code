@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        
+        //first iterate until first positive integer:
+        int best = nums[0];
+        int running = best;
+        
+        for(int i = 1; i<nums.size(); ++i){
+            
+            running = max(running, 0) + nums[i];
+            
+            best = max(best, running);
+            
+        }
+        
+        return best;
+
+    }
+};
