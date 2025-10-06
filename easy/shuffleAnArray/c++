@@ -1,0 +1,43 @@
+class Solution {
+public:
+    Solution(vector<int>& nums) {
+        original = nums;
+    }
+    
+    vector<int> reset() {
+        return original;
+    }
+    
+    vector<int> shuffle() {
+        vector<int> shuffled = original;
+        std::set<int> indexes;
+        
+        int rand_i;
+        int n = original.size();
+        int pos = 0;
+        while(indexes.size() != n){
+            rand_i = rand() % n;
+            if(indexes.find(rand_i) != indexes.end()){ // index has been done before
+                continue;
+            }
+            else{
+                shuffled[rand_i] = original[pos];
+                indexes.insert(rand_i);
+                ++pos;
+            }
+            
+        }
+        return shuffled;
+        
+    }
+    
+private:
+    vector<int> original;
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution* obj = new Solution(nums);
+ * vector<int> param_1 = obj->reset();
+ * vector<int> param_2 = obj->shuffle();
+ */
