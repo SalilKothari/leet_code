@@ -1,0 +1,20 @@
+class Solution:
+    def fizzBuzz(self, n: int) -> List[str]:
+        
+        answer = [""] * n
+        
+        for i in range(n):
+            
+            num = i+1
+            if num % 3 == 0:
+                answer[i] += ("Fizz")
+                
+            if num % 5 == 0:
+                answer[i] += ("Buzz")
+            
+            if num %3 != 0 and num%5 != 0:
+                answer[i] = str(num)
+                
+        return answer
+            
+        
