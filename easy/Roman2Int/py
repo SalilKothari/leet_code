@@ -1,0 +1,58 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        running = 0
+        lastChar = "."
+        
+        
+        for char in s:
+            match char:
+                case "M":
+                    running += 1000
+                    if lastChar != "." and lastChar == 'C':
+                        running -= 200
+                    print(running)
+                    lastChar = 'M'
+                    
+                case "D":
+                    running += 500
+                    if lastChar != "." and lastChar == 'C':
+                        running -= 200
+                    print(running)
+                    lastChar = 'D'
+                    
+                case "C":
+                    running += 100
+                    if lastChar != "." and lastChar == 'X':
+                        running -= 20
+                    print(running)
+                    lastChar = 'C'
+                    
+                case "L":
+                    running += 50
+                    if lastChar != "." and lastChar ==  'X':
+                        running -= 20
+                    print(running)
+                    lastChar = 'L'
+                
+                
+                case "X":
+                    running += 10
+                    if lastChar != "." and lastChar ==  'I':
+                        running -= 2
+                    print(running)
+                    lastChar = 'X'
+                    
+                case "V":
+                    running += 5
+                    if lastChar != "." and lastChar ==  'I':
+                        running -= 2
+                    print(running)
+                    lastChar = 'V'
+                
+                case "I":
+                    running += 1
+                    print(running)
+                    lastChar = 'I'
+        return running
+                    
+        
