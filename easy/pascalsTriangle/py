@@ -1,0 +1,17 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        
+        pascal = []
+        
+        for row in range(numRows):
+            pRow = []
+            
+            for elt in range(row + 1):
+                if elt == 0 or elt == row:
+                    pRow.append(1)
+                else:
+                    pRow.append(pascal[row-1][elt] +  pascal[row-1][elt-1] )
+            
+            pascal.append(pRow)
+            
+        return pascal
