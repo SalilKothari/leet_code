@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.size() %2 == 1) return false;
+        stack<char> paren;
+        
+        for(auto c: s){
+            if(c == '(' || c == '{' || c == '['){
+                paren.push(c);
+            }
+            
+            else{
+                if(paren.empty()) return false;
+                switch(c){
+                    case ')':
+                        if(paren.top() != '(' ) return false;
+                        paren.pop();
+                        continue;
+                    case '}':
+                        if(paren.top() != '{' ) return false;
+                        paren.pop();
+                        continue;
+                    case ']':
+                        if(paren.top() != '[' ) return false;
+                        paren.pop();
+                        continue;
+                        
+                        
+                }
+            }
+        }
+        
+        return paren.empty();
+    }
+};
