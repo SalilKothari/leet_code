@@ -1,0 +1,36 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        if len(s) %2 == 1:
+            return False
+        paren = []
+        
+        opener = ['(', '{', '[']
+        
+        
+        for c in s:
+            if c in opener:
+                paren.append(c)
+            else:
+                if len(paren) == 0:
+                    return False
+                match c:
+                    case ")":
+                        if paren[-1] !='(':
+                            return False
+                        paren.pop()
+                        continue
+                    case "}":   
+                        if paren[-1] !='{':
+                            return False
+                        paren.pop()
+                        continue
+                    case "]":       
+                        if paren[-1] !='[':
+                            return False
+                        paren.pop()
+                        continue
+                        
+        return len(paren) == 0
+    
+    
