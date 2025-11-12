@@ -1,0 +1,26 @@
+# Write your MySQL query statement below
+WITH Managers AS
+(
+    SELECT 
+        managerId,
+        COUNT(*) as count
+    FROM Employee
+    GROUP BY managerId
+)
+
+SELECT e.name
+FROM Managers m
+LEFT JOIN Employee e ON e.id = m.managerId
+WHERE count > 4 AND e.id IS NOT NULL;
+
+
+# Second solution
+
+SELECT name
+FROM Employee
+WHERE id IN (
+    SELECT managerId
+    FROM Employee
+    GROUP BY managerId
+    HAVING COUNT(*) >=5
+);
