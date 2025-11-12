@@ -1,0 +1,12 @@
+# first solution:
+SELECT project_id, ROUND(AVG(experience_years), 2) AS average_years
+FROM Employee e
+LEFT JOIN Project p ON e.employee_id = p.employee_id 
+WHERE p.project_id IS NOT NULL
+GROUP BY project_id;
+
+# inner join solution:
+SELECT project_id, ROUND(AVG(experience_years), 2) AS average_years
+FROM Employee e
+INNER JOIN Project p ON e.employee_id = p.employee_id 
+GROUP BY project_id;
