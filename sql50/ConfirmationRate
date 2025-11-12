@@ -1,0 +1,29 @@
+# Solution 1
+WITH conf AS
+(
+    SELECT 
+        s.user_id,
+        COUNT(CASE WHEN action = 'confirmed' THEN 1 END) AS confirms,
+        COUNT(*) as total
+    FROM Signups s
+    LEFT JOIN Confirmations c ON s.user_id = c.user_id
+    GROUP BY user_id
+)
+
+SELECT user_id, ROUND(confirms/total, 2) AS confirmation_rate
+FROM conf;
+
+# Coalesce solution
+
+# Coalesce Try
+
+SELECT s.user_id,
+    ROUND(
+        COALESCE(
+                SUM(CASE WHEN action = 'confirmed' THEN 1 ELSE 0 END) / COUNT(*)
+            ,0
+        ),2
+    ) as confirmation_rate
+FROM Signups s
+LEFT JOIN Confirmations c ON s.user_id = c.user_id
+GROUP BY s.user_id;
