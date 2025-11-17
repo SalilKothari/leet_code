@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {        
+        sort(nums.begin(), nums.end());
+        if(nums[0] != 0){
+            return 0;
+        }
+        
+        size_t n = nums.size();
+        
+        //go through and identify out of order
+        for(size_t i =1; i<nums.size(); ++i){
+            if(nums[i] !=nums[i-1] + 1){
+                return nums[i-1] + 1;
+            }
+        }
+        
+        return nums[n-1] +1;
+        
+    }
+};
